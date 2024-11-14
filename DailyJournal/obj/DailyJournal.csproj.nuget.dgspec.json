@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournal\\DailyJournal\\DailyJournal.csproj": {}
+    "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournalApp\\DailyJournal\\DailyJournal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournal\\DailyJournal\\DailyJournal.csproj": {
+    "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournalApp\\DailyJournal\\DailyJournal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournal\\DailyJournal\\DailyJournal.csproj",
+        "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournalApp\\DailyJournal\\DailyJournal.csproj",
         "projectName": "DailyJournal",
-        "projectPath": "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournal\\DailyJournal\\DailyJournal.csproj",
+        "projectPath": "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournalApp\\DailyJournal\\DailyJournal.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournal\\DailyJournal\\obj\\",
+        "outputPath": "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournalApp\\DailyJournal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",

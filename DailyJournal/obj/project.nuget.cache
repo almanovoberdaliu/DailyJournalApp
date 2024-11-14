@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Mg5HSycpmdsdZbY45YPpmQFJZawDZwoxDIK0jMAHtH6ouxJb0DQMzOYFQ164RN1TiaP5MREUQTnpkgQ8ilv05Q==",
+  "dgSpecHash": "Xe4PV0pp2MiwVnAkzw9QOYQzZLjPNia7KQq2OFjA2Bv48Pr1opMyElPupwpSk2xqHgpicO9C8MbG2Jzt1XzgYQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournal\\DailyJournal\\DailyJournal.csproj",
+  "projectFilePath": "C:\\Users\\LENOVO\\Desktop\\Alma Novobërdaliu\\Faculty\\Master\\Semestri III\\Dizajni i Zhvilluar nga Testimi\\DailyJournalApp\\DailyJournal\\DailyJournal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LENOVO\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

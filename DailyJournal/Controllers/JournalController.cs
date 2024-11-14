@@ -7,9 +7,10 @@ namespace DailyJournal.Controllers
     {
         private readonly IJournalService _journalService;
 
-        public JournalController(IJournalService journalService)
+        // IJournalService journalService - ne parameter te const
+        public JournalController()
         {
-            _journalService = journalService;
+           // _journalService = journalService;
         }
 
         [HttpPost("add")]
