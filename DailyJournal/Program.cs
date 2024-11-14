@@ -1,7 +1,10 @@
+using DailyJournal.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+ConfigureServices(builder.Services);
 
 // Add services to the container.
 
@@ -28,3 +31,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void ConfigureServices(IServiceCollection services) {
+    services.AddTransient<IJournalService, IJournalService>();
+}
