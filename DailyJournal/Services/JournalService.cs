@@ -24,5 +24,9 @@ namespace DailyJournal.Services
         {
             throw new NotImplementedException();
         }
+        public async Task<bool> UpdateEntryAsync(int id, string title, string content)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

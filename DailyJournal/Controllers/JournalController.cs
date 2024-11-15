@@ -36,5 +36,11 @@ namespace DailyJournal.Controllers
         {
             return null;
         }
+
+        [HttpPut("get/{id}")]
+        public async Task<IActionResult> UpdateEntry(int id,string title,string content)
+        {
+            return null;
+        }
     }
 }

@@ -13,5 +13,7 @@ namespace DailyJournal.Interfaces
 
         Task<IEnumerable<Journal>> GetAllEntriesAsync();
 
+        Task<bool> UpdateEntryAsync(int id, string title, string content);
+
     }
 }
