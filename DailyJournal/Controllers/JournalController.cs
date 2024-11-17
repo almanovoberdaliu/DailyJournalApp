@@ -7,14 +7,13 @@ namespace DailyJournal.Controllers
     {
         private readonly IJournalService _journalService;
 
-        // IJournalService journalService - ne parameter te const
         public JournalController(IJournalService journalService)
         {
             _journalService = journalService;
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddEntry(string title, string content)
+        public async Task<IActionResult> AddEntry(string title, string content,DateTime createdDate)
         {
             return null;
         }
@@ -38,9 +37,29 @@ namespace DailyJournal.Controllers
         }
 
         [HttpPut("get/{id}")]
-        public async Task<IActionResult> UpdateEntry(int id,string title,string content)
+        public async Task<IActionResult> UpdateEntry(int id,string title,string content, DateTime CreatedDate)
         {
             return null;
         }
+
+
+        [HttpGet("filter-by-date")]
+        public async Task<IActionResult> FilterByDate(DateTime date)
+        {
+            return null;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(string username, string password)
+        {
+            return null;
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(string username, string password)
+        {
+            return null;
+        }
+
     }
 }
