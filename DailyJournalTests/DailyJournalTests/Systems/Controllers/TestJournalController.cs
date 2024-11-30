@@ -27,8 +27,6 @@ namespace DailyJournalTests.Systems.Controllers
             
         }
 
-
-
         [Fact]
         public async Task AddEntry_OnSuccess_ReturnsStatusCode201()
         {

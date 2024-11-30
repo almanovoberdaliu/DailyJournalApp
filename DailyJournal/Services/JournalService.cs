@@ -8,16 +8,26 @@ namespace DailyJournal.Services
         private readonly List<Journal> _journalEntries = new();
         private int _currentId = 1;
 
-        public async Task<Journal> AddEntryAsync(string title, string content, DateTime date)
+        // Helper method to find an entry by ID
+        private Journal FindEntryById(int id) =>
+            _journalEntries.FirstOrDefault(e => e.Id == id);
+
+        // Helper method to validate input
+        private void ValidateInput(string title, string content)
         {
             if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(content))
                 throw new ArgumentException("Title and content cannot be empty.");
+        }
+
+        public async Task<Journal> AddEntryAsync(string title, string content, DateTime date)
+        {
+            ValidateInput(title, content);
 
             var newEntry = new Journal
             {
                 Id = _currentId++,
-                Title = title,
-                Description = content,
+                Title = title.Trim(),
+                Description = content.Trim(),
                 CreatedDate = date
             };
 
@@ -27,7 +37,7 @@ namespace DailyJournal.Services
 
         public async Task<bool> DeleteEntryAsync(int id)
         {
-            var entry = _journalEntries.FirstOrDefault(e => e.Id == id);
+            var entry = FindEntryById(id);
             if (entry == null) return await Task.FromResult(false);
 
             _journalEntries.Remove(entry);
@@ -41,16 +51,18 @@ namespace DailyJournal.Services
         }
         public async Task<IEnumerable<Journal>> GetAllEntriesAsync()
         {
-            return await Task.FromResult(_journalEntries);
+            return await Task.FromResult(_journalEntries.OrderByDescending(e => e.CreatedDate));
         }
 
         public async Task<bool> UpdateEntryAsync(int id, string title, string content, DateTime date)
         {
-            var entry = _journalEntries.FirstOrDefault(e => e.Id == id);
+            ValidateInput(title, content);
+
+            var entry = FindEntryById(id);
             if (entry == null) return await Task.FromResult(false);
 
-            entry.Title = title;
-            entry.Description = content;
+            entry.Title = title.Trim();
+            entry.Description = content.Trim();
             entry.CreatedDate = date;
 
             return await Task.FromResult(true);
@@ -58,8 +70,7 @@ namespace DailyJournal.Services
 
         public async Task<Journal> FilterByDateAsync(DateTime date)
         {
-            var entry = _journalEntries.FirstOrDefault(e => e.CreatedDate.Date == date.Date);
-            return await Task.FromResult(entry);
+            return await Task.FromResult(_journalEntries.FirstOrDefault(e => e.CreatedDate.Date == date.Date));
         }
 
         //public Task RegisterUserAsync(string username, string password)

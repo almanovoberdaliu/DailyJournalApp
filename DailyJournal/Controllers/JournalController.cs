@@ -15,6 +15,15 @@ namespace DailyJournal.Controllers
             _journalService = journalService;
         }
 
+        // Helper method for handling service failures
+        private IActionResult HandleServiceFailure(string errorMessage) =>
+            StatusCode(500, errorMessage);
+
+        // Helper method for handling input validation failures
+        private IActionResult HandleBadRequest(string errorMessage) =>
+            BadRequest(errorMessage);
+
+
         [HttpGet("get/{id}")]
         public async Task<IActionResult> GetEntryById(int id)
         {
@@ -29,10 +38,17 @@ namespace DailyJournal.Controllers
         public async Task<IActionResult> AddEntry(string title, string content, DateTime createdDate)
         {
             if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(content))
-                return BadRequest("Title and content cannot be empty.");
+                return HandleBadRequest("Title and content cannot be empty.");
 
-            var entry = await _journalService.AddEntryAsync(title, content, createdDate);
-            return CreatedAtAction(nameof(GetEntryById), new { id = entry.Id }, entry);
+            try
+            {
+                var entry = await _journalService.AddEntryAsync(title, content, createdDate);
+                return CreatedAtAction(nameof(GetEntryById), new { id = entry.Id }, entry);
+            }
+            catch (Exception ex)
+            {
+                return HandleServiceFailure(ex.Message);
+            }
         }
 
         [HttpDelete("delete/{id}")]
@@ -40,7 +56,7 @@ namespace DailyJournal.Controllers
         {
             var isDeleted = await _journalService.DeleteEntryAsync(id);
             if (!isDeleted)
-                return StatusCode(500, "Failed to delete the journal entry.");
+                return HandleServiceFailure("Failed to delete the journal entry.");
 
             return NoContent();
         }
@@ -55,9 +71,12 @@ namespace DailyJournal.Controllers
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateEntry(int id, string title, string content, DateTime createdDate)
         {
+            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(content))
+                return HandleBadRequest("Title and content cannot be empty.");
+
             var isUpdated = await _journalService.UpdateEntryAsync(id, title, content, createdDate);
             if (!isUpdated)
-                return StatusCode(500, "Failed to update the journal entry.");
+                return HandleServiceFailure("Failed to update the journal entry.");
 
             return NoContent();
         }
