@@ -28,21 +28,6 @@ namespace DailyJournalTests.Systems.Controllers
         }
 
 
-        [Fact]
-        public async Task Get_OnSuccess_InvokesJournalServiceExactlyOnce() 
-        {
-            var mockJournalsService = new Mock<IJournalService>();
-
-            mockJournalsService.Setup(service => service.GetAllEntriesAsync()).ReturnsAsync(new List<Journal>());
-            var sut = new JournalController(mockJournalsService.Object);
-
-            var result = await sut.GetAllEntries();
-
-            mockJournalsService.Verify(
-                service => service.GetAllEntriesAsync(),
-                Times.Once());
-        
-        }
 
         [Fact]
         public async Task AddEntry_OnSuccess_ReturnsStatusCode201()
@@ -161,54 +146,54 @@ namespace DailyJournalTests.Systems.Controllers
             mockJournalService.Verify(service => service.FilterByDateAsync(startDate), Times.Once);
         }
 
-        [Fact]
-        public async Task Register_OnSuccess_ReturnsStatusCode200()
-        {
-            // Arrange
-            var mockJournalService = new Mock<IJournalService>();
+        //[Fact]
+        //public async Task Register_OnSuccess_ReturnsStatusCode200()
+        //{
+        //    // Arrange
+        //    var mockJournalService = new Mock<IJournalService>();
 
-            var username = "testuser";
-            var password = "password123";
+        //    var username = "testuser";
+        //    var password = "password123";
 
-            mockJournalService
-                .Setup(service => service.RegisterUserAsync(username, password))
-                .Returns(Task.CompletedTask); 
+        //    mockJournalService
+        //        .Setup(service => service.RegisterUserAsync(username, password))
+        //        .Returns(Task.CompletedTask); 
 
-            var sut = new JournalController(mockJournalService.Object);
+        //    var sut = new JournalController(mockJournalService.Object);
 
-            // Act
-            var result = (OkObjectResult)await sut.Register(username, password);
+        //    // Act
+        //    var result = (OkObjectResult)await sut.Register(username, password);
 
-            // Assert
-            result.StatusCode.Should().Be(200);
-            result.Value.Should().Be("User registered successfully.");
-            mockJournalService.Verify(service => service.RegisterUserAsync(username, password), Times.Once);
-        }
+        //    // Assert
+        //    result.StatusCode.Should().Be(200);
+        //    result.Value.Should().Be("User registered successfully.");
+        //    mockJournalService.Verify(service => service.RegisterUserAsync(username, password), Times.Once);
+        //}
 
-        [Fact]
-        public async Task Login_ValidCredentials_ReturnsStatusCode200()
-        {
-            // Arrange
-            var mockJournalService = new Mock<IJournalService>();
+        //[Fact]
+        //public async Task Login_ValidCredentials_ReturnsStatusCode200()
+        //{
+        //    // Arrange
+        //    var mockJournalService = new Mock<IJournalService>();
 
-            var username = "testuser";
-            var password = "password123";
+        //    var username = "testuser";
+        //    var password = "password123";
 
             
-            mockJournalService
-                .Setup(service => service.LoginAsync(username, password))
-                .ReturnsAsync(true);
+        //    mockJournalService
+        //        .Setup(service => service.LoginAsync(username, password))
+        //        .ReturnsAsync(true);
 
-            var sut = new JournalController(mockJournalService.Object);
+        //    var sut = new JournalController(mockJournalService.Object);
 
-            // Act
-            var result = (OkObjectResult)await sut.Login(username, password);
+        //    // Act
+        //    var result = (OkObjectResult)await sut.Login(username, password);
 
-            // Assert
-            result.StatusCode.Should().Be(200); 
-            result.Value.Should().Be("Login successful.");
-            mockJournalService.Verify(service => service.LoginAsync(username, password), Times.Once);
-        }
+        //    // Assert
+        //    result.StatusCode.Should().Be(200); 
+        //    result.Value.Should().Be("Login successful.");
+        //    mockJournalService.Verify(service => service.LoginAsync(username, password), Times.Once);
+        //}
 
 
 

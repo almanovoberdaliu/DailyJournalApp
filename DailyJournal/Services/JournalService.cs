@@ -5,44 +5,72 @@ namespace DailyJournal.Services
 {
     public class JournalService : IJournalService
     {
-        public Task<Journal> AddEntryAsync(string title, string content,DateTime date)
+        private readonly List<Journal> _journalEntries = new();
+        private int _currentId = 1;
+
+        public async Task<Journal> AddEntryAsync(string title, string content, DateTime date)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(content))
+                throw new ArgumentException("Title and content cannot be empty.");
+
+            var newEntry = new Journal
+            {
+                Id = _currentId++,
+                Title = title,
+                Description = content,
+                CreatedDate = date
+            };
+
+            _journalEntries.Add(newEntry);
+            return await Task.FromResult(newEntry);
         }
 
-        public Task<bool> DeleteEntryAsync(int id)
+        public async Task<bool> DeleteEntryAsync(int id)
         {
-            throw new NotImplementedException();
+            var entry = _journalEntries.FirstOrDefault(e => e.Id == id);
+            if (entry == null) return await Task.FromResult(false);
+
+            _journalEntries.Remove(entry);
+            return await Task.FromResult(true);
         }
 
-        public Task<Journal> FilterByDateAsync(DateTime date)
+        public async Task<Journal> GetEntryByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entry = _journalEntries.FirstOrDefault(e => e.Id == id);
+            return await Task.FromResult(entry);
+        }
+        public async Task<IEnumerable<Journal>> GetAllEntriesAsync()
+        {
+            return await Task.FromResult(_journalEntries);
         }
 
-        public Task<IEnumerable<Journal>> GetAllEntriesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Journal> GetEntryByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
         public async Task<bool> UpdateEntryAsync(int id, string title, string content, DateTime date)
         {
-            throw new NotImplementedException();
+            var entry = _journalEntries.FirstOrDefault(e => e.Id == id);
+            if (entry == null) return await Task.FromResult(false);
+
+            entry.Title = title;
+            entry.Description = content;
+            entry.CreatedDate = date;
+
+            return await Task.FromResult(true);
         }
 
-        public Task RegisterUserAsync(string username, string password)
+        public async Task<Journal> FilterByDateAsync(DateTime date)
         {
-            throw new NotImplementedException();
+            var entry = _journalEntries.FirstOrDefault(e => e.CreatedDate.Date == date.Date);
+            return await Task.FromResult(entry);
         }
 
-        public Task<bool> LoginAsync(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task RegisterUserAsync(string username, string password)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task<bool> LoginAsync(string username, string password)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
     }
 }
